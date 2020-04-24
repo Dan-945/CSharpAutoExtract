@@ -14,14 +14,14 @@ using SharpCompress.Archives;
 
 namespace ClassLibrary
 {
-    class Unrar
+    public class Unrar
     {
         //TODO: make reusable function for unraring. below code works when used in Program - main
         private static readonly NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
-        public void rarFunction( )
+        public static void rarFunction(List<ExtractFile>inputList)
         {
             // extract files
-            foreach (var item in files)
+            foreach (var item in inputList)
             {
                 try
                 {

@@ -59,35 +59,39 @@ namespace autoExtract
                 item.fileDestination = globalVar.destinationFolder;
             }
 
+            Unrar.rarFunction(files);
 
-            // extract files
-            foreach (var item in files)
-            {
-                try
-                {
-                    using (var archive = RarArchive.Open(item.fileName))
-                    {
-                        foreach (var entry in archive.Entries.Where(entry => !entry.IsDirectory))
-                        {
-                            entry.WriteToDirectory(item.fileDestination, new ExtractionOptions()
-                            {
-                                ExtractFullPath = true,
-                                Overwrite = true
-                            });
-                        }
-                    }
-                    using (FileStream fs = File.Create(item.filePath + @"\unrared"))
-                    {
-                        Console.WriteLine($"file: {item.fileName} unrared.");
-                        logger.Info($"file: {item.fileName} unrared.");
-                    }
-                }
-                catch (Exception)
-                {
-                    Console.WriteLine("fuckup");
-                    logger.Info($"file: {item.fileName} did not unrar, error.");
-                }
-            }
+
+            //// extract files
+            //foreach (var item in files)
+            //{
+            //    try
+            //    {
+            //        using (var archive = RarArchive.Open(item.fileName))
+            //        {
+            //            foreach (var entry in archive.Entries.Where(entry => !entry.IsDirectory))
+            //            {
+            //                entry.WriteToDirectory(item.fileDestination, new ExtractionOptions()
+            //                {
+            //                    ExtractFullPath = true,
+            //                    Overwrite = true
+            //                });
+            //            }
+            //        }
+            //        using (FileStream fs = File.Create(item.filePath + @"\unrared"))
+            //        {
+            //            Console.WriteLine($"file: {item.fileName} unrared.");
+            //            logger.Info($"file: {item.fileName} unrared.");
+            //        }
+            //    }
+            //    catch (Exception)
+            //    {
+            //        Console.WriteLine("fuckup");
+            //        logger.Info($"file: {item.fileName} did not unrar, error.");
+            //    }
+            //}
+
+
             // temp print function
             Console.WriteLine(files.Count);
             foreach (var item in files)
