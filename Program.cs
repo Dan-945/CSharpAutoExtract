@@ -14,7 +14,6 @@ namespace autoExtract
             //declare vars
             List<ExtractFile> rarFiles = new List<ExtractFile>();
             List<ExtractFile> mkvFiles = new List<ExtractFile>();
-
             string[] subDirectories = Directory.GetDirectories(globalVar.searchFolder);
 
             //searching through folders to determine what files need extracting
@@ -35,7 +34,7 @@ namespace autoExtract
             }
 
             //extract files
-            //Unrar.rarFunction(files);
+            Unrar.rarFunction(rarFiles);
 
             //copying mkv files
             foreach (var item in mkvFiles)
