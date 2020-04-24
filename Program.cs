@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Data;
 using System.IO;
-using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
 using ClassLibrary;
 
@@ -15,14 +12,22 @@ namespace autoExtract
         static void Main(string[] args)
         {
             //declare vars
-            List<ExtractFile> files = new List<ExtractFile>();
+            List<ExtractFile> rarFiles = new List<ExtractFile>();
+            List<ExtractFile> mkvFiles = new List<ExtractFile>();
+
             string[] subDirectories = Directory.GetDirectories(globalVar.searchFolder);
 
             //searching through folders to determine what files need extracting
-            SearchFolder.searchFolder(subDirectories, files);
+            SearchFolder.searchFolder(subDirectories, rarFiles, mkvFiles);
             
             // loop through created items to assign destination before extracting / moving.
-            foreach (var item in files)
+            foreach (var item in rarFiles)
+            {
+                //TODO: add regex in this function to properly sort all media.
+                //item.fileDestination = destination.finalFolder(item.fileName);
+                item.fileDestination = globalVar.destinationFolder;
+            }
+            foreach (var item in mkvFiles)
             {
                 //TODO: add regex in this function to properly sort all media.
                 //item.fileDestination = destination.finalFolder(item.fileName);
@@ -32,18 +37,21 @@ namespace autoExtract
             //extract files
             //Unrar.rarFunction(files);
 
+            //copying mkv files
+            foreach (var item in mkvFiles)
+            {
+                FileHandler.CopyFiles(item.fileName, item.fileDestination);
+            }
+
             // temp print function
-            Console.WriteLine($"rar files found: { files.Count}");
-            foreach (var item in files)
+            logger.Info($"rar files found: { rarFiles.Count}");
+            logger.Info($"mkv files found: { mkvFiles.Count}");
+            foreach (var item in rarFiles)
             {
                 logger.Info($"fileName: { item.fileName}");
                 logger.Info($"filePath: { item.filePath}");
                 logger.Info($"fileDestination: {item.fileDestination}");
 
-                Console.WriteLine($"fileName: { item.fileName}");
-                Console.WriteLine($"filePath: { item.filePath}");
-                Console.WriteLine($"fileDestination: {item.fileDestination}");
-                //logger.Info(item.fileDestination);
             }
 
             //TODO: publish as executable

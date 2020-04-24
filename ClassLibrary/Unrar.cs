@@ -2,13 +2,8 @@
 using System.Data;
 using System.IO;
 using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
-using ClassLibrary;
-using SharpCompress;
 using SharpCompress.Common;
-using SharpCompress.Readers;
-using SharpCompress.Readers.Rar;
 using SharpCompress.Archives.Rar;
 using SharpCompress.Archives;
 
@@ -38,7 +33,6 @@ namespace ClassLibrary
                     }
                     using (FileStream fs = File.Create(item.filePath + @"\unrared"))
                     {
-                        Console.WriteLine($"file: {item.fileName} unrared.");
                         logger.Info($"file: {item.fileName} unrared.");
                     }
                 }
