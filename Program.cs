@@ -19,7 +19,7 @@ namespace autoExtract
         private static readonly NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
         static void Main(string[] args)
         {
-            List<ExtractFile> files = new List<ExtractFile>();
+             List<ExtractFile> files = new List<ExtractFile>();
 
             //searching through folders to determine what files need extracting
             string[] subDirectories = Directory.GetDirectories(globalVar.searchFolder);
