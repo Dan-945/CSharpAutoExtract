@@ -50,7 +50,12 @@ namespace autoExtract
                 logger.Info($"fileName: { item.fileName}");
                 logger.Info($"filePath: { item.filePath}");
                 logger.Info($"fileDestination: {item.fileDestination}");
-
+            }
+            foreach (var item in mkvFiles)
+            {
+                logger.Info($"fileName: { item.fileName}");
+                logger.Info($"filePath: { item.filePath}");
+                logger.Info($"fileDestination: {item.fileDestination}");
             }
 
             //TODO: publish as executable

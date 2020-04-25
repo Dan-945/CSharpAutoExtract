@@ -34,7 +34,7 @@ namespace ClassLibrary
                     }
                     if (searchFile.EndsWith(".mkv"))
                     {
-                        if (File.Exists(subDir + @"\copied"))
+                        if (File.Exists(searchFile + @"copied"))
                         {
                             logger.Info($"file {subDir} already copied.");
                         }

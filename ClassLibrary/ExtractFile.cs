@@ -6,10 +6,10 @@ namespace ClassLibrary
     public class globalVar
     {
 
-        public static string searchFolder = @"C:\test\completed";
-        //public static string searchFolder = @"Z:\SeagateDisk\MediaFolder\completed";
-        public static string destinationFolder = @"C:\test\destination";
-        //public static string destinationFolder = @"Z:\SeagateDisk\MediaFolder\completed"; 
+        //public static string searchFolder = @"C:\test\completed";
+        public static string searchFolder = @"Z:\SeagateDisk\MediaFolder\completed";
+        //public static string destinationFolder = @"C:\test\destination";
+        public static string destinationFolder = @"Z:\2TBdisk\temp"; 
 
     }
     public class ExtractFile

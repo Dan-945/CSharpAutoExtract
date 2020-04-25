@@ -15,7 +15,7 @@ namespace ClassLibrary
             {
                 logger.Info($"copying file {targetFile} to {destination}");
                 File.Copy(targetFile, destination + @"\" + Path.GetFileName(targetFile));
-                using (FileStream fs = File.Create(Path.GetDirectoryName(targetFile) + @"\copied"))
+                using (FileStream fs = File.Create(targetFile + @"copied"))
                 {
                     logger.Info($"Finished copying file {targetFile} to {destination}");
                 } 
