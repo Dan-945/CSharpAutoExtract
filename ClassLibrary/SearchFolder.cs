@@ -11,7 +11,12 @@ namespace ClassLibrary
         {
             foreach (var subDir in subDirectories)
             {
+                //searching all files in search folders subdirs.
                 string[] fileEntries = Directory.GetFiles(subDir);
+
+                // for each file in the folders, check if it is a .rar file and not already unrared,
+                //if so, add to list of class for unraring
+
                 foreach (string searchFile in fileEntries)
                 {
                     if (searchFile.EndsWith(".rar"))
@@ -32,6 +37,7 @@ namespace ClassLibrary
                         }
 
                     }
+                    // if the folder contains .mkv file instead of rar, use the following code:
                     if (searchFile.EndsWith(".mkv"))
                     {
                         if (File.Exists(searchFile + @"copied"))
