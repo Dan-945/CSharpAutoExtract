@@ -1,15 +1,14 @@
-﻿using System;
-using System.IO;
+﻿using ClassLibrary;
 using System.Collections.Generic;
-using ClassLibrary;
-
+using System.IO;
 
 namespace autoExtract
 {
-    class Program
+    internal class Program
     {
         private static readonly NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
-        static void Main(string[] args)
+
+        private static void Main(string[] args)
         {
             //declare vars
             List<ExtractFile> rarFiles = new List<ExtractFile>();
@@ -18,7 +17,7 @@ namespace autoExtract
 
             //searching through folders to determine what files need extracting
             SearchFolder.searchFolder(subDirectories, rarFiles, mkvFiles);
-            
+
             // loop through created items to assign destination before extracting / moving.
             foreach (var item in rarFiles)
             {
@@ -65,7 +64,7 @@ namespace autoExtract
             //so that torrent download folder can be deleteted
             //TODO: add config file for filepaths.
             //TODO: create config file function, low pri
-            //TODO: determine download type and add correct filedestination, tvshow + name / movie. 
+            //TODO: determine download type and add correct filedestination, tvshow + name / movie.
         }
     }
 }
