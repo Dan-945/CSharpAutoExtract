@@ -61,11 +61,13 @@ namespace autoExtract
             //TODO: publish as executable
 
             //v2:
+            //TODO: add unit testing to existing? at least any new functions.
             //TODO: add extracted / moved tvShows or movies to separate list "ready for delete"
             //so that torrent download folder can be deleteted
             //TODO: add config file for filepaths.
             //TODO: create config file function, low pri
-            //TODO: determine download type and add correct filedestination, tvshow + name / movie. 
+            //TODO: determine download type and add correct filedestination, tvshow + name / movie. '
+
         }
     }
 }
