@@ -21,7 +21,7 @@ namespace ClassLibrary
 
     public class destination
     {
-        public static string finalFolder(string fileName)
+        public string finalFolder(string fileName)
         {
             var finalFolder = "";
             if (fileName.Substring(1,12) == globalVar.searchFolder + @"\tvShow")
@@ -29,12 +29,14 @@ namespace ClassLibrary
                 Console.WriteLine("file is a tvShow");
                 //TODO: determine showname and designated folder.
                 //TODO: run checkFolder to make sure folder exists.
-                finalFolder = globalVar.destinationFolder + @"\tvShow";
+                 finalFolder = globalVar.destinationFolder + @"\tvShow";
+                return finalFolder;
             }
             else
             {
                 Console.WriteLine("file is a movie");
                 finalFolder = globalVar.destinationFolder + @"\movie";
+                return finalFolder;
             }
             Console.WriteLine(finalFolder);
             return finalFolder;
