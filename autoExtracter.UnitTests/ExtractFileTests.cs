@@ -15,10 +15,39 @@ namespace autoExtracter.UnitTests
         }
         
         [Test]
-        public void FinalFolder_FileFound_ReturnFormattedDestination()
+        public void MediaType_TvShow_ReturnTrue()
         {
-            var result = _destination.FinalFolder(@"C:\test\NCIS.S10E04.mkv");
-            Assert.That(result, Does.Contain("NCIS"));
+            var result = _destination.MediaTypeIsTvShow(@"C:\test\NCIS.S10E04.mkv");
+            Assert.That(result, Is.True);
         }
+        [Test]
+        public void MediaType_Movie_ReturnFalse()
+        {
+            var result = _destination.MediaTypeIsTvShow(@"C:\test\Avengers");
+            Assert.That(result, Is.False);
+        }
+
+        [Test]
+        public void SortFile_WhenCalled_SortsFile()
+        {
+            Assert.That(true);
+        }
+
+        [Test]
+        [Ignore("Should be integration test")]
+        public void CheckFolder_FolderExists_ReturnsTrue()
+        {
+            var result = _destination.CheckFolder(globalVar.destinationFolder);
+            Assert.That(result, Is.True);
+        }
+
+        [Test]
+        [Ignore("Should be integration test")]
+        public void CheckFolder_FolderDoesNotExists_ReturnsFalse()
+        {
+            var result = _destination.CheckFolder(@"C:\ThisFolderDoesNotExist");
+            Assert.That(result, Is.False);
+        }
+
     }
 }

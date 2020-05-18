@@ -1,17 +1,16 @@
-﻿using System;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 
 namespace ClassLibrary
 {
     public class globalVar
     {
-
         //public static string searchFolder = @"C:\test\completed";
         public static string searchFolder = @"Z:\SeagateDisk\MediaFolder\completed";
-        //public static string destinationFolder = @"C:\test\destination";
-        public static string destinationFolder = @"Z:\2TBdisk\temp"; 
 
+        //public static string destinationFolder = @"C:\test\destination";
+        public static string destinationFolder = @"Z:\2TBdisk\temp";
     }
+
     public class ExtractFile
     {
         public string fileName { get; set; }
@@ -21,32 +20,44 @@ namespace ClassLibrary
 
     public class Destination
     {
-        public string FinalFolder(string fileName)
+        private static readonly NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
+
+        //use regex to detemine if file contains SxxExx, if so, must be a tv show.
+        public bool MediaTypeIsTvShow(string fileName)
         {
-            var finalFolder = "";
-            if (fileName.Contains("test"))
+            try
             {
-                Console.WriteLine("file is a tvShow");
-                //TODO: determine showname and designated folder.
-                //TODO: run checkFolder to make sure folder exists.
-                 finalFolder = globalVar.destinationFolder + @"\tvShow";
-                return finalFolder;
+                Regex rx = new Regex(@".\d\d.\d\d",
+                RegexOptions.Compiled | RegexOptions.IgnoreCase);
+                var matches = rx.Matches(fileName);
+                if (matches.Count != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
+            catch
             {
-                Console.WriteLine("file is a movie");
-                finalFolder = globalVar.destinationFolder + @"\movie";
-                return finalFolder;
-            }
-            Console.WriteLine(finalFolder);
-            return finalFolder;
+                logger.Info($"invalid input,{fileName} placed in movie folder.");
+                return false;
+            } 
         }
-        public static string CheckFolder(string fileName)
+
+        public string SortFile(string fileName)
+        {
+           string FinalFolder = "";
+
+           return FinalFolder;
+        }
+        public string CheckFolder(string fileName)
         {
             var checkFolder = "";
             //TODO: check if designated folder exists, if not, create it.
+
             return checkFolder;
         }
-
     }
 }
