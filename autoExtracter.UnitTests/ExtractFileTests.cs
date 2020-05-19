@@ -30,7 +30,8 @@ namespace autoExtracter.UnitTests
         [Test]
         public void SortFile_WhenCalled_SortsFile()
         {
-            Assert.That(true);
+            var result = _destination.SortFile(@"C:\test\NCIS.S10E04.mkv");
+            Assert.That(result, Is.EqualTo(@"\NCIS\S10\"));
         }
 
         [Test]

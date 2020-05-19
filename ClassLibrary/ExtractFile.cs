@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 
 namespace ClassLibrary
 {
@@ -49,7 +50,16 @@ namespace ClassLibrary
         public string SortFile(string fileName)
         {
            string FinalFolder = "";
-
+           // if (MediaTypeIsTvShow(fileName)==true)
+           if(true)
+           {
+               Regex rx = new Regex(@".\d\d.\d\d",
+                   RegexOptions.Compiled | RegexOptions.IgnoreCase);
+               var result = Regex.Match(fileName, @"[^\d\d.\d\d]*");
+               FinalFolder = result.ToString();
+               Console.WriteLine(result);
+               return FinalFolder;
+           }
            return FinalFolder;
         }
         public string CheckFolder(string fileName)
