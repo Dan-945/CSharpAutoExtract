@@ -53,15 +53,13 @@ namespace ClassLibrary
            // if (MediaTypeIsTvShow(fileName)==true)
            if(true)
            {
-               Regex rx = new Regex(@".\d\d.\d\d",
-                   RegexOptions.Compiled | RegexOptions.IgnoreCase);
                var result = Regex.Match(fileName, @"[^\d\d.\d\d]*");
-               
+
+               var result2 = Regex.Match(result.ToString(), @"[^C:\\w*]\w*\\\w*");
                //TODO: lag ny result her for å få tekst etter sist \ skal da være kun "NCIS" igjen.
                //TODO: lag egen funksjon for å hente ut sessong av filnavn. 
                //TODO: til slutt egen funksjon for å sette sammen disse delene til endelig folder.
-               FinalFolder = result.ToString();
-               Console.WriteLine(result);
+               FinalFolder = result2.ToString();
                return FinalFolder;
            }
            return FinalFolder;

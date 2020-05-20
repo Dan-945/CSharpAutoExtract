@@ -26,6 +26,7 @@ namespace autoExtracter.UnitTests
             var result = _destination.MediaTypeIsTvShow(@"C:\test\Avengers");
             Assert.That(result, Is.False);
         }
+        
 
         [Test]
         public void SortFile_WhenCalled_SortsFile()
