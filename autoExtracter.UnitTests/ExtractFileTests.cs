@@ -29,10 +29,12 @@ namespace autoExtracter.UnitTests
         
 
         [Test]
-        public void SortFile_WhenCalled_SortsFile()
+        [TestCase(@"C:\test\NCIS.S10E04.mkv", "NCIS")]
+        [TestCase(@"Z:\2TBdisk\tvShows\NCIS\NCIS.S14E19.1080p.HEVC.x265 - MeGusta", "NCIS")]
+        public void FindShowName_WhenCalled_ReturnsShowName(string input, string expectedResult)
         {
-            var result = _destination.SortFile(@"C:\test\NCIS.S10E04.mkv");
-            Assert.That(result, Is.EqualTo(@"\NCIS\S10\"));
+            var result = _destination.FindShowName(input);
+            Assert.That(result, Is.EqualTo(expectedResult));
         }
 
         [Test]
