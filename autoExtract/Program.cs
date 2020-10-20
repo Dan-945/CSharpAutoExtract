@@ -60,6 +60,8 @@ namespace autoExtract
             //TODO: publish as executable
             //unstaged comment
             //v2:
+            //TODO: add database connection for storing shows added, shows seeding, shows ready for delete.
+            //TODO: handling of moving shows between statuses
             //TODO: add extracted / moved tvShows or movies to separate list "ready for delete"
             //so that torrent download folder can be deleteted
             //TODO: add config file for filepaths.
