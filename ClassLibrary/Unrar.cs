@@ -13,24 +13,28 @@ namespace ClassLibrary
     {
         //TODO: make reusable function for unraring. below code works when used in Program - main
         private static readonly NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
-        public static void rarFunction(List<ExtractFile>inputList)
+        public static void rarFunction(List<ExtractFile>inputList, string _readonly="1")
         {
             // extract files
             foreach (var item in inputList)
             {
                 try
                 {
-                    using (var archive = RarArchive.Open(item.fileName))
+                    if (_readonly=="1")
                     {
-                        foreach (var entry in archive.Entries.Where(entry => !entry.IsDirectory))
+                        using (var archive = RarArchive.Open(item.fileName))
                         {
-                            entry.WriteToDirectory(item.fileDestination, new ExtractionOptions()
+                            foreach (var entry in archive.Entries.Where(entry => !entry.IsDirectory))
                             {
-                                ExtractFullPath = true,
-                                Overwrite = true
-                            });
+                                entry.WriteToDirectory(item.fileDestination, new ExtractionOptions()
+                                {
+                                    ExtractFullPath = true,
+                                    Overwrite = true
+                                });
+                            }
                         }
                     }
+
                     using (FileStream fs = File.Create(item.filePath + @"\unrared"))
                     {
                         logger.Info($"file: {item.fileName} unrared.");

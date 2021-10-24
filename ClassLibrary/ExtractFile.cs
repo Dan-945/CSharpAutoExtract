@@ -1,4 +1,6 @@
-﻿using System;
+﻿using System.Configuration;
+using System.Collections.Specialized;
+using System;
 using System.Text.RegularExpressions;
 
 namespace ClassLibrary
@@ -6,10 +8,12 @@ namespace ClassLibrary
     public class globalVar
     {
         //public static string searchFolder = @"C:\test\completed";
-        public static string searchFolder = @"Z:\SeagateDisk\MediaFolder\completed";
+        //public static string searchFolder = @"U:\Media\TransmissionData\completed";
+        public static string searchFolder = ConfigurationManager.AppSettings.Get("searchFolder");
 
         //public static string destinationFolder = @"C:\test\destination";
-        public static string destinationFolder = @"Z:\2TBdisk\temp";
+        //public static string destinationFolder = @"U:\Media\TransmissionData\temp";
+        public static string destinationFolder = ConfigurationManager.AppSettings.Get("destinationFolder");
     }
 
     public class ExtractFile

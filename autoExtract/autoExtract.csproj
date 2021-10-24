@@ -16,7 +16,8 @@
     <PackageReference Include="NLog.Config" Version="4.7.0" />
     <PackageReference Include="NLog.Extensions.Logging" Version="1.6.2" />
     <PackageReference Include="NLog.Schema" Version="4.7.0" />
-    <PackageReference Include="SharpCompress" Version="0.25.0" />
+    <PackageReference Include="SharpCompress" Version="0.30.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0-rc.2.21480.5" />
   </ItemGroup>
 
   <ItemGroup>

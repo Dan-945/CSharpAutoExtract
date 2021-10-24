@@ -1,4 +1,6 @@
-﻿using System;
+﻿using System.Configuration;
+using System.Collections.Specialized;
+using System;
 using ClassLibrary;
 using System.Collections.Generic;
 using System.IO;
@@ -11,6 +13,7 @@ namespace autoExtract
 
         private static void Main(string[] args)
         {
+            string _readOnly = ConfigurationManager.AppSettings.Get("_readOnly");
             //declare vars
             List<ExtractFile> rarFiles = new List<ExtractFile>();
             List<ExtractFile> mkvFiles = new List<ExtractFile>();
@@ -33,13 +36,13 @@ namespace autoExtract
             }
 
             //extract files
-            //Unrar.rarFunction(rarFiles);
+            Unrar.rarFunction(rarFiles, _readOnly);
 
             //copying mkv files
-            // foreach (var item in mkvFiles)
-            // {
-            //     FileHandler.CopyFiles(item.fileName, item.fileDestination);
-            // }
+            foreach (var item in mkvFiles)
+            {
+                FileHandler.CopyFiles(item.fileName, item.fileDestination, _readOnly);
+            }
 
             // temp print function
             logger.Info($"rar files found: { rarFiles.Count}");
@@ -64,8 +67,6 @@ namespace autoExtract
             //TODO: handling of moving shows between statuses
             //TODO: add extracted / moved tvShows or movies to separate list "ready for delete"
             //so that torrent download folder can be deleteted
-            //TODO: add config file for filepaths.
-            //TODO: create config file function, low pri
             //TODO: determine download type and add correct filedestination, tvshow + name / movie.
         }
     }
