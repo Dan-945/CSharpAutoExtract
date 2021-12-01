@@ -7,6 +7,7 @@ using System.IO;
 
 namespace autoExtract
 {
+    //TODO: Upgrade solution to .net 6
     internal class Program
     {
         private static readonly NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
