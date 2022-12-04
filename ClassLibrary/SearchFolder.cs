@@ -22,6 +22,7 @@ namespace ClassLibrary
                     newFile.fileName = mkv;
                     newFile.filePath = Path.GetDirectoryName(mkv);
                 }
+            }
 
                 var allRar = Directory.GetFiles(directory, "*.rar", SearchOption.AllDirectories);
                 foreach (var rar in allRar)
@@ -46,4 +47,4 @@ namespace ClassLibrary
         }
 
     }
-}
+
