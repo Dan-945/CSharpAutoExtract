@@ -35,7 +35,7 @@ namespace ClassLibrary
                         }
                     }
 
-                    using (FileStream fs = File.Create(item.filePath + @"\unrared"))
+                    using (FileStream fs = File.Create(item.filePath + @"/unrared"))
                     {
                         logger.Info($"file: {item.fileName} unrared.");
                     }
