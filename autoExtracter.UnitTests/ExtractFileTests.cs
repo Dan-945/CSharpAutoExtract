@@ -2,18 +2,18 @@ using ClassLibrary;
 using NUnit.Framework;
 
 namespace autoExtracter.UnitTests
-{    
+{
     [TestFixture]
     public class Tests
     {
         private Destination _destination;
-        
+
         [SetUp]
         public void Setup()
         {
             _destination = new Destination();
         }
-        
+
         [Test]
         public void MediaType_TvShow_ReturnTrue()
         {
@@ -26,7 +26,7 @@ namespace autoExtracter.UnitTests
             var result = _destination.MediaTypeIsTvShow(@"C:\test\Avengers");
             Assert.That(result, Is.False);
         }
-        
+
 
         [Test]
         [TestCase(@"C:\test\NCIS.S10E04.mkv", "NCIS")]

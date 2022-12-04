@@ -1,8 +1,6 @@
-﻿using System.Configuration;
-using System.Collections.Specialized;
-using System;
-using ClassLibrary;
+﻿using ClassLibrary;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 
 namespace autoExtract
@@ -18,21 +16,16 @@ namespace autoExtract
             //declare vars
             List<ExtractFile> rarFiles = new List<ExtractFile>();
             List<ExtractFile> mkvFiles = new List<ExtractFile>();
-            string[] subDirectories = Directory.GetDirectories(globalVar.searchFolder);
 
             //searching through folders to determine what files need extracting
-            SearchFolder.searchFolder(subDirectories, rarFiles, mkvFiles);
+            SearchFolder.searchFolder(globalVar.searchFolder, rarFiles, mkvFiles);
             // loop through created items to assign destination before extracting / moving.
             foreach (var item in rarFiles)
             {
-                //TODO: add regex in this function to properly sort all media.
-                //item.fileDestination = destination.finalFolder(item.fileName);
                 item.fileDestination = globalVar.destinationFolder;
             }
             foreach (var item in mkvFiles)
             {
-                //TODO: add regex in this function to properly sort all media.
-                //item.fileDestination = destination.finalFolder(item.fileName);
                 item.fileDestination = globalVar.destinationFolder;
             }
 
@@ -42,33 +35,24 @@ namespace autoExtract
             //copying mkv files
             foreach (var item in mkvFiles)
             {
+                System.Console.WriteLine($"Copying file: {item.fileName}");
                 FileHandler.CopyFiles(item.fileName, item.fileDestination, _readOnly);
             }
 
-            // temp print function
-            logger.Info($"rar files found: { rarFiles.Count}");
-            logger.Info($"mkv files found: { mkvFiles.Count}");
+            logger.Info($"rar files found: {rarFiles.Count}");
+            logger.Info($"mkv files found: {mkvFiles.Count}");
             foreach (var item in rarFiles)
             {
-                logger.Info($"fileName: { item.fileName}");
-                logger.Info($"filePath: { item.filePath}");
+                logger.Info($"fileName: {item.fileName}");
+                logger.Info($"filePath: {item.filePath}");
                 logger.Info($"fileDestination: {item.fileDestination}");
             }
             foreach (var item in mkvFiles)
             {
-                logger.Info($"fileName: { item.fileName}");
-                logger.Info($"filePath: { item.filePath}");
+                logger.Info($"fileName: {item.fileName}");
+                logger.Info($"filePath: {item.filePath}");
                 logger.Info($"fileDestination: {item.fileDestination}");
             }
-
-            //TODO: publish as executable
-            //unstaged comment
-            //v2:
-            //TODO: add database connection for storing shows added, shows seeding, shows ready for delete.
-            //TODO: handling of moving shows between statuses
-            //TODO: add extracted / moved tvShows or movies to separate list "ready for delete"
-            //so that torrent download folder can be deleteted
-            //TODO: determine download type and add correct filedestination, tvshow + name / movie.
         }
     }
 }

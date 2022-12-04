@@ -1,11 +1,11 @@
-﻿using System;
+﻿using SharpCompress.Archives;
+using SharpCompress.Archives.Rar;
+using SharpCompress.Common;
+using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
-using System.Collections.Generic;
-using SharpCompress.Common;
-using SharpCompress.Archives.Rar;
-using SharpCompress.Archives;
 
 namespace ClassLibrary
 {
@@ -13,14 +13,14 @@ namespace ClassLibrary
     {
         //TODO: make reusable function for unraring. below code works when used in Program - main
         private static readonly NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
-        public static void rarFunction(List<ExtractFile>inputList, string _readonly="1")
+        public static void rarFunction(List<ExtractFile> inputList, string _readonly = "1")
         {
             // extract files
             foreach (var item in inputList)
             {
                 try
                 {
-                    if (_readonly=="1")
+                    if (_readonly == "1")
                     {
                         using (var archive = RarArchive.Open(item.fileName))
                         {
@@ -40,9 +40,11 @@ namespace ClassLibrary
                         logger.Info($"file: {item.fileName} unrared.");
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    Console.WriteLine("fuckup");
+                    //Console.WriteLine("fuckup");
+                    Console.WriteLine($"file: {item.fileName} did not unrar, error.");
+                    Console.WriteLine(ex.ToString());
                     logger.Info($"file: {item.fileName} did not unrar, error.");
                 }
             }

@@ -1,6 +1,4 @@
 ﻿using System.Configuration;
-using System.Collections.Specialized;
-using System;
 using System.Text.RegularExpressions;
 
 namespace ClassLibrary
@@ -48,18 +46,18 @@ namespace ClassLibrary
             {
                 logger.Info($"invalid input,{fileName} placed in movie folder.");
                 return false;
-            } 
+            }
         }
 
         public string FindShowName(string fileName)
         {
-           string ShowName = "";
-           // if (MediaTypeIsTvShow(fileName)==true)
-           if(true)
-           {
-               var result = Regex.Match(fileName, @"[^\d\d.\d\d]*");
+            string ShowName = "";
+            // if (MediaTypeIsTvShow(fileName)==true)
+            if (true)
+            {
+                var result = Regex.Match(fileName, @"[^\d\d.\d\d]*");
 
-               //var result2 = Regex.Match(result.ToString(), @"[^C:\\w*]\w*\\\w*");
+                //var result2 = Regex.Match(result.ToString(), @"[^C:\\w*]\w*\\\w*");
                 var result2 = Regex.Match(result.ToString(), @"(?<=C:\\).*");
                 var result3 = Regex.Match(result2.ToString(), @"(?<=\\).*");
 
@@ -67,9 +65,9 @@ namespace ClassLibrary
                 //TODO: lag egen funksjon for å hente ut sessong av filnavn. 
                 //TODO: til slutt egen funksjon for å sette sammen disse delene til endelig folder.
                 ShowName = result3.ToString();
-               return ShowName;
-           }
-           return ShowName;
+                return ShowName;
+            }
+            return ShowName;
         }
         public string CheckFolder(string fileName)
         {
